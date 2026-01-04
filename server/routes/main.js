@@ -57,7 +57,7 @@ router.get('/post/:id', async (req, res) => {
       currentRoute: `/post/${slug}`
     }
 
-    res.render('post', { locals, data, currentRoute });
+    res.render('post', { locals, data, currentRoute: `/post/${slug}` });
 
   } catch (error) {
     console.log(error);
@@ -107,7 +107,7 @@ router.post('/search', async (req, res) => {
 
 
 router.get('/about', (req, res) => {
-  res.render('about',{
+  res.render('about', {
     currentRoute: '/about'
   }
   )

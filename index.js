@@ -8,10 +8,10 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo').default;
 
 const connectDB = require('./server/config/db');
-const { isActiveRoute} = require('./server/helpers/routehelpers');
+const { isActiveRoute } = require('./server/helpers/routehelpers');
 const app = express();
 
-const port = 5500 || process.env.port;
+const port = process.env.PORT || 5500;
 
 connectDB();
 
