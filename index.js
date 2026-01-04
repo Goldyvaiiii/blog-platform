@@ -19,6 +19,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(cookieParser());
+if (!process.env.MONGODB_URI) {
+    console.error('ERROR: MONGODB_URI is not defined in environment variables.');
+    console.error('ACTION REQUIRED: Add MONGODB_URI to your Railway environment variables.');
+}
+
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
