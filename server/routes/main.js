@@ -107,10 +107,25 @@ router.post('/search', async (req, res) => {
 
 
 router.get('/about', (req, res) => {
-  res.render('about', {
-    currentRoute: '/about'
+  const locals = {
+    title: "About",
+    description: "Simple Blog created with NodeJs, Express & MongoDb."
   }
-  )
+  res.render('about', {
+    locals,
+    currentRoute: '/about'
+  });
+});
+
+router.get('/contact', (req, res) => {
+  const locals = {
+    title: "Contact",
+    description: "Simple Blog created with NodeJs, Express & MongoDb."
+  }
+  res.render('contact', {
+    locals,
+    currentRoute: '/contact'
+  });
 });
 
 

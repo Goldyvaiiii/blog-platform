@@ -15,9 +15,13 @@ const port = process.env.PORT || 5500;
 // Check for required environment variables BEFORE anything else
 if (!process.env.MONGODB_URI || !process.env.JWT_SECRET) {
     console.error('*********************************************************************************');
-    console.error('CRITICAL ERROR: MONGODB_URI or JWT_SECRET is missing!');
-    console.error('ACTION REQUIRED: You MUST add these to your Railway/Render Environment Variables.');
-    console.error('If you JUST added them, make sure to RE-DEPLOY or RESTART the service.');
+    console.error('CRITICAL ERROR: Environment Variables are missing!');
+    if (!process.env.MONGODB_URI) console.error('- MONGODB_URI is MISSING');
+    if (!process.env.JWT_SECRET) console.error('- JWT_SECRET is MISSING');
+    console.error('');
+    console.error('ACTION REQUIRED:');
+    console.error('1. You MUST add these variables in your RAILWAY or RENDER dashboard.');
+    console.error('2. You MUST "Push" your code to GitHub so the hosting service sees the update.');
     console.error('*********************************************************************************');
     process.exit(1);
 }
