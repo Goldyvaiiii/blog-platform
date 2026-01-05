@@ -10,8 +10,17 @@ const MongoStore = require('connect-mongo').default;
 const connectDB = require('./server/config/db');
 const { isActiveRoute } = require('./server/helpers/routehelpers');
 const app = express();
-
 const port = process.env.PORT || 5500;
+
+// Check for required environment variables BEFORE anything else
+if (!process.env.MONGODB_URI || !process.env.JWT_SECRET) {
+    console.error('*********************************************************************************');
+    console.error('CRITICAL ERROR: MONGODB_URI or JWT_SECRET is missing!');
+    console.error('ACTION REQUIRED: You MUST add these to your Railway/Render Environment Variables.');
+    console.error('If you JUST added them, make sure to RE-DEPLOY or RESTART the service.');
+    console.error('*********************************************************************************');
+    process.exit(1);
+}
 
 connectDB();
 
@@ -19,11 +28,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(cookieParser());
-if (!process.env.MONGODB_URI || !process.env.JWT_SECRET) {
-    console.error('ERROR: Missing critical environment variables (MONGODB_URI or JWT_SECRET).');
-    console.error('ACTION REQUIRED: Go to your Render Dashboard -> Environment and add both MONGODB_URI and JWT_SECRET.');
-    process.exit(1);
-}
 
 app.use(session({
     secret: 'keyboard cat',

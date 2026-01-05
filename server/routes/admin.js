@@ -221,12 +221,12 @@ router.post('/register', async (req, res) => {
 
     try {
       const user = await User.create({ username, password: hashedPassword });
-      res.status(201).json({ message: 'User Created', user });
+      res.redirect('/admin'); // Redirect back to login after successful registration
     } catch (error) {
       if (error.code === 11000) {
-        res.status(409).json({ message: 'User already in use' });
+        return res.status(409).json({ message: 'User already in use' });
       }
-      console.log(error); // Debugging duplicate key error
+      console.log(error);
       res.status(500).json({ message: 'Internal server error' });
     }
 
