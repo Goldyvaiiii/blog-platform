@@ -16,8 +16,8 @@ const port = process.env.PORT || 5500;
 if (!process.env.MONGODB_URI || !process.env.JWT_SECRET) {
     console.error('*********************************************************************************');
     console.error('CRITICAL ERROR: Environment Variables are missing!');
-    if (!process.env.MONGODB_URI) console.error('- MONGODB_URI is MISSING');
-    if (!process.env.JWT_SECRET) console.error('- JWT_SECRET is MISSING');
+    if (!process.env.MONGODB_URI) console.error('- mongodb+srv://01234567vss_db_user:fJ7mdPPH4w2btvMa@cluster0.fxdyxkz.mongodb.net/Blog');
+    if (!process.env.JWT_SECRET) console.error('MysecretBlog');
     console.error('');
     console.error('ACTION REQUIRED:');
     console.error('1. You MUST add these variables in your RAILWAY or RENDER dashboard.');
